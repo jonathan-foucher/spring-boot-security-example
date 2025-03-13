@@ -1,0 +1,14 @@
+server:
+  port: 8091
+  servlet:
+    context-path: /jwt-api
+
+spring:
+  jackson:
+    property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy
+
+jwt:
+  private-key-file-path: classpath:pem/private-key.pem
+  public-key-file-path: classpath:pem/public-key.pem
+  # 2 hours
+  expiration-time: 7200000
