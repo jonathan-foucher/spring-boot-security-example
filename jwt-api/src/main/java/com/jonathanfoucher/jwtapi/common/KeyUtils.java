@@ -70,7 +70,7 @@ public class KeyUtils {
                 .kty(RSA_ALGORITHM)
                 .kid(jwtConfig.getKeyId())
                 .use("sig")
-                .alg(publicKey.getAlgorithm())
+                .alg("RS256")
                 .n(Base64.getUrlEncoder().encodeToString(publicKey.getModulus().toByteArray()))
                 .e(Base64.getUrlEncoder().encodeToString(publicKey.getPublicExponent().toByteArray()))
                 .x5c(List.of(readPublicCertificateB64String(publicCertPath)))
