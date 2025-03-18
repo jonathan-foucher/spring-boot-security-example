@@ -10,7 +10,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties("jwt")
 public class JwtConfig {
-    private String publicKeyFilePath;
     private String privateKeyFilePath;
+    private String publicCertFilePath;
+    private String keyId;
     private Integer expirationTime;
 }
