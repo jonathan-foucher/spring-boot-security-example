@@ -1,8 +1,8 @@
 package com.jonathanfoucher.jwtapi.controllers;
 
+import com.jonathanfoucher.jwtapi.data.dto.Jwks;
 import com.jonathanfoucher.jwtapi.data.dto.UserDto;
 import com.jonathanfoucher.jwtapi.services.AuthService;
-import io.jsonwebtoken.security.RsaPublicJwk;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +17,8 @@ public class AuthController {
         return authService.generateToken(user);
     }
 
-    @GetMapping("/jwk")
-    public RsaPublicJwk getJwk() {
-        return authService.getJwk();
+    @GetMapping("/jwks")
+    public Jwks getJwks() {
+        return authService.getJwks();
     }
 }

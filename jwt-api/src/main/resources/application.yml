@@ -8,7 +8,8 @@ spring:
     property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy
 
 jwt:
-  private-key-file-path: classpath:pem/private-key.pem
-  public-key-file-path: classpath:pem/public-key.pem
+  private-key-file-path: classpath:certificates/private.key
+  public-cert-file-path: classpath:certificates/public.cert
+  key-id: some-key-id
   # 2 hours
   expiration-time: 7200000
