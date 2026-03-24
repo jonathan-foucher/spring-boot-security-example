@@ -5,7 +5,7 @@ server:
 
 spring:
   jackson:
-    property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy
+    property-naming-strategy: SNAKE_CASE
 
 jwt:
   private-key-file-path: classpath:certificates/private.key

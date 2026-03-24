@@ -11,18 +11,18 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.3</version>
+        <version>4.0.4</version>
     </parent>
 
     <properties>
-        <java.version>23</java.version>
-        <jsonwebtoken.version>0.12.6</jsonwebtoken.version>
+        <java.version>25</java.version>
+        <jsonwebtoken.version>0.13.0</jsonwebtoken.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-webmvc</artifactId>
         </dependency>
 
         <!-- data -->
@@ -64,7 +64,6 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
