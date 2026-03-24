@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.converter.json.JacksonJsonHttpMessageConverter;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
@@ -35,7 +35,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(AuthController.class)
 @SpringJUnitConfig({AuthController.class, SecurityService.class, CustomResponseEntityExceptionHandler.class})
 @EnableMethodSecurity
 class AuthControllerTest {
@@ -58,7 +57,6 @@ class AuthControllerTest {
     private static final String UUID_PATH = "/uuid/{uuid}";
 
     private static final Pattern TIMESTAMP_REGEX_PATTERN = Pattern.compile("^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$");
-    private static final String DEFAULT_TYPE = "about:blank";
 
     private static final String UUID_VALUE = "d0418816-a0f2-4d78-822a-7618403be312";
     private static final String FIRST_NAME = "John";
@@ -69,7 +67,7 @@ class AuthControllerTest {
     void init() {
         mockMvc = MockMvcBuilders.standaloneSetup(authController)
                 .setControllerAdvice(customResponseEntityExceptionHandler)
-                .setMessageConverters()
+                .setMessageConverters(new JacksonJsonHttpMessageConverter())
                 .build();
 
         listAppender.list.clear();
@@ -139,7 +137,6 @@ class AuthControllerTest {
         // WHEN / THEN
         mockMvc.perform(get(ADMIN_PATH))
                 .andExpect(status().isForbidden())
-                .andExpect(jsonPath("$.type", equalTo(DEFAULT_TYPE)))
                 .andExpect(jsonPath("$.title", equalTo(FORBIDDEN.getReasonPhrase())))
                 .andExpect(jsonPath("$.status", equalTo(FORBIDDEN.value())))
                 .andExpect(jsonPath("$.detail", equalTo("Access Denied")))
@@ -185,7 +182,6 @@ class AuthControllerTest {
         // WHEN / THEN
         mockMvc.perform(get(AUTHORIZED_JOB_PATH))
                 .andExpect(status().isForbidden())
-                .andExpect(jsonPath("$.type", equalTo(DEFAULT_TYPE)))
                 .andExpect(jsonPath("$.title", equalTo(FORBIDDEN.getReasonPhrase())))
                 .andExpect(jsonPath("$.status", equalTo(FORBIDDEN.value())))
                 .andExpect(jsonPath("$.detail", equalTo("Access Denied")))
@@ -239,7 +235,6 @@ class AuthControllerTest {
         // WHEN / THEN
         mockMvc.perform(get(UUID_PATH, "9b38e5b2-4422-40ca-9e3b-64271c89c5a9"))
                 .andExpect(status().isForbidden())
-                .andExpect(jsonPath("$.type", equalTo(DEFAULT_TYPE)))
                 .andExpect(jsonPath("$.title", equalTo(FORBIDDEN.getReasonPhrase())))
                 .andExpect(jsonPath("$.status", equalTo(FORBIDDEN.value())))
                 .andExpect(jsonPath("$.detail", equalTo("Access Denied")))

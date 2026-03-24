@@ -1,8 +1,8 @@
 package com.jonathanfoucher.securityexample.security;
 
 import com.jonathanfoucher.securityexample.data.dto.UserDto;
+import org.jspecify.annotations.NonNull;
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;

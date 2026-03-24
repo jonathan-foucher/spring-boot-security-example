@@ -3,7 +3,7 @@ package com.jonathanfoucher.securityexample.services;
 import com.jonathanfoucher.securityexample.data.dto.UserDto;
 import com.jonathanfoucher.securityexample.data.enums.AuthorizedJob;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
